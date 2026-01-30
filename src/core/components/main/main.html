@@ -1,0 +1,16 @@
+<main class="layout">
+    <header class="topbar">
+        <div class="brand">Entertaino</div>
+        <nav class="nav">
+            @for (item of navItems(); track item.path) {
+                <a class="nav-link" [routerLink]="item.path" routerLinkActive="is-active">
+                    {{ item.label }}
+                </a>
+            }
+        </nav>
+    </header>
+
+    <section class="content">
+        <router-outlet></router-outlet>
+    </section>
+</main>

@@ -2,11 +2,12 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "0de8ca0a-0219-444c-ab72-5f5e7b4459a0"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "entertaino-angular.": {
+    "entertaino-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -66,10 +67,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "entertaino-angular.:build:production"
+              "buildTarget": "entertaino-angular:build:production"
             },
             "development": {
-              "buildTarget": "entertaino-angular.:build:development"
+              "buildTarget": "entertaino-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
