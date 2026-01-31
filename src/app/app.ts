@@ -6,7 +6,6 @@ import { Main } from '../core/components/main/main';
   imports: [Main],
   templateUrl: './app.html',
   styleUrl: './app.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
-}
+export class App {}

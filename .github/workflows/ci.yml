@@ -1,0 +1,124 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - development
+      - pre-release
+      - release
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.1
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [quality]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.1
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.1
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Test
+        run: npm test -- --watch=false
+
+  security:
+    runs-on: ubuntu-latest
+    needs: [quality]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.1
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Audit (high severity)
+        run: npm run audit
+
+  dependencies:
+    runs-on: ubuntu-latest
+    needs: [quality]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.1
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Outdated dependencies
+        run: |
+          set +e
+          npm run outdated > outdated.txt
+          exit 0
+        continue-on-error: true
+
+      - name: Dependency summary
+        run: |
+          {
+            echo "## Outdated dependencies"
+            echo ""
+            echo "\`\`\`"
+            if [ -s outdated.txt ]; then
+              cat outdated.txt
+            else
+              echo "No outdated dependencies reported."
+            fi
+            echo "\`\`\`"
+          } >> "$GITHUB_STEP_SUMMARY"

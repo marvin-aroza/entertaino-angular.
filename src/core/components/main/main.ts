@@ -6,11 +6,11 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './main.html',
   styleUrl: './main.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Main {
   protected readonly navItems = signal([
     { label: 'User', path: '/user' },
-    { label: 'Admin', path: '/admin' }
+    { label: 'Admin', path: '/admin' },
   ]);
 }
