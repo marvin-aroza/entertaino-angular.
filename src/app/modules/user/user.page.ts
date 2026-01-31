@@ -55,26 +55,26 @@ import { Section } from '../../../core/components/section/section';
         color: #0b0d12;
         background: #5cf2ff;
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserPage {
   protected readonly highlights = signal([
     {
       title: 'Continue series',
       description: 'Jump back into your last session.',
-      status: 'Resume'
+      status: 'Resume',
     },
     {
       title: 'New releases',
       description: 'Fresh drops curated for you.',
-      status: 'Explore'
+      status: 'Explore',
     },
     {
       title: 'Your list',
       description: 'Saved for later viewing.',
-      status: 'Saved'
-    }
+      status: 'Saved',
+    },
   ]);
 }

@@ -7,6 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/app\" \"src/core\" \".github/workflows\" \"package.json\" \"eslint.config.cjs\"",
+    "format:check": "prettier --check \"src/app\" \"src/core\" \".github/workflows\" \"package.json\" \"eslint.config.cjs\"",
+    "audit": "npm audit --audit-level=high --omit=dev",
+    "outdated": "npm outdated",
     "serve:ssr:entertaino-angular": "node dist/entertaino-angular/server/server.mjs"
   },
   "prettier": {
@@ -40,9 +46,18 @@
     "@angular/build": "^21.1.2",
     "@angular/cli": "^21.1.2",
     "@angular/compiler-cli": "^21.1.2",
+    "@angular-eslint/eslint-plugin": "^20.2.0",
+    "@angular-eslint/eslint-plugin-template": "^20.2.0",
+    "@angular-eslint/template-parser": "^20.2.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.20.0",
     "@types/express": "^5.0.6",
-    "@types/node": "^20.19.30",
+    "@types/node": "^25.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
+    "eslint": "^9.20.0",
     "jsdom": "^27.4.0",
+    "prettier": "^3.5.2",
     "typescript": "~5.9.2",
     "vitest": "^4.0.18"
   }

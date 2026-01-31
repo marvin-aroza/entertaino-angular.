@@ -10,9 +10,8 @@ describe('Main', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Main],
-      providers: [provideRouter([])]
-    })
-    .compileComponents();
+      providers: [provideRouter([])],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Main);
     component = fixture.componentInstance;

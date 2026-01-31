@@ -41,14 +41,14 @@ import { Section } from '../../../core/components/section/section';
         font-size: 1.2rem;
         font-weight: 600;
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminPage {
   protected readonly stats = signal([
     { label: 'Active sessions', value: '128' },
     { label: 'Scheduled drops', value: '6' },
-    { label: 'Pending reviews', value: '14' }
+    { label: 'Pending reviews', value: '14' },
   ]);
 }
