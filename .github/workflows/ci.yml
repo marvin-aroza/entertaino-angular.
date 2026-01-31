@@ -103,5 +103,22 @@ jobs:
         run: npm ci
 
       - name: Outdated dependencies
-        run: npm run outdated
+        run: |
+          set +e
+          npm run outdated > outdated.txt
+          exit 0
         continue-on-error: true
+
+      - name: Dependency summary
+        run: |
+          {
+            echo "## Outdated dependencies"
+            echo ""
+            echo "\`\`\`"
+            if [ -s outdated.txt ]; then
+              cat outdated.txt
+            else
+              echo "No outdated dependencies reported."
+            fi
+            echo "\`\`\`"
+          } >> "$GITHUB_STEP_SUMMARY"
